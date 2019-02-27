@@ -13,7 +13,7 @@ The following **required** functionality is completed:
 * [x] In portrait mode, the poster image, title, and movie overview is shown.
 * [x] In landscape mode, the rotated alternate layout should use the backdrop image instead and show the title and movie overview to the right of it.
 
-The following **additional** features are implemented:
+The following **additional** features are not yet implemented:
 
 * [ ] For popular movies movie voted will be displayed
 
