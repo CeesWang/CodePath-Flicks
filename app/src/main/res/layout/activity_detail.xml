@@ -18,58 +18,75 @@
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Movie TITLE"
         android:paddingLeft="5dp"
+        android:text="Movie TITLE"
         android:textColor="@android:color/white"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:paddingLeft="5dp"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:paddingLeft="5dp"
             android:id="@+id/tvAdult"
-            android:layout_width="106dp"
+            android:layout_width="0dp"
+            android:layout_weight = "1"
             android:layout_height="wrap_content"
             android:text="PG13 / R"
             android:textColor="#C0C0C0" />
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="#C0C0C0" />
+
         <TextView
             android:id="@+id/tvGenres"
-            android:layout_width="215dp"
+            android:layout_width="0dp"
+            android:layout_weight = "2"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:drawableRight="@android:color/white"
             android:text="genres"
             android:textColor="#C0C0C0" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="#C0C0C0" />
 
         <TextView
             android:id="@+id/tvDate"
-            android:layout_width="163dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="releaseDate"
+            android:textAlignment="textEnd"
             android:textColor="#C0C0C0" />
 
     </LinearLayout>
 
     <RatingBar
-        android:paddingLeft="5dp"
         android:id="@+id/ratingBar"
         style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="10"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
         android:rating="8.2" />
 
     <TextView
-        android:paddingLeft="5dp"
         android:id="@+id/tvOverview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingTop="10dp"
         android:text="Synopses"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="18dp" />
 
 
 

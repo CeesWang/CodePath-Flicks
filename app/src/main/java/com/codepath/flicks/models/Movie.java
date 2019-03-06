@@ -66,7 +66,6 @@ public class Movie {
                             genres.append(map_genres.get(jsonArray.getInt(i)) + ", ");
 
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -87,7 +86,6 @@ public class Movie {
         }
         return movies;
     }
-
 
     public String getPosterPath() {
         return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);

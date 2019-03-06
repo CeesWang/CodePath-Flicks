@@ -6,8 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.codepath.flicks.adapters.MoviesAdapter;
-import com.codepath.flicks.models.Movie;
+import com.codepath.flicks.adapters.ReviewAdapter;
+import com.codepath.flicks.models.Review;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -20,32 +20,30 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-public class MainActivity extends AppCompatActivity {
-
-    private static String movie_url = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
-    List<Movie> movies;
-    RecyclerView rvMovies;
+public class ReviewActivity extends AppCompatActivity {
+    private static String review_url = "https://api.themoviedb.org/3/movie/%d/reviews?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+    List<Review> reviews;
+    RecyclerView rvReview;
+    ReviewAdapter adapter;
     AsyncHttpClient client;
-    MoviesAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        rvMovies = findViewById(R.id.rvMovie);
-        movies = new ArrayList<>();
-        adapter = new MoviesAdapter(this, movies);
-        rvMovies.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rvMovies.setAdapter(adapter);
-
+        setContentView(R.layout.activity_review);
+        reviews = new ArrayList<>();
+        adapter = new ReviewAdapter(this,reviews);
+        rvReview = findViewById(R.id.rvReview);
+        rvReview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvReview.setAdapter(adapter);
         client = new AsyncHttpClient();
-        client.get(movie_url, new JsonHttpResponseHandler() {
+        client.get(review_url, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     JSONArray jsonArray = response.getJSONArray("results");
-                    movies.addAll(Movie.fromJsonArray(jsonArray));
+                    reviews.addAll(Review.fromJsonArray(jsonArray));
                     adapter.notifyDataSetChanged();
-                    Log.d("smile", movies.toString());
+                    Log.d("smile", reviews.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
