@@ -13,7 +13,7 @@ The following **additional** features are not yet implemented:
 
 * [x] For popular movies movie voted will be displayed
 
-## Flicks Part 2 - week 2
+# *Flicks* - week 2
 
 ### User Stories
 
