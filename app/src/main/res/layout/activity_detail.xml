@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:orientation="vertical"
+    tools:context=".DetailActivity">
+
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/player"
+        android:layout_width="match_parent"
+        android:layout_height="250dp" />
+
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Movie TITLE"
+        android:paddingLeft="5dp"
+        android:textColor="@android:color/white"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:paddingLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:paddingLeft="5dp"
+            android:id="@+id/tvAdult"
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:text="PG13 / R"
+            android:textColor="#C0C0C0" />
+
+        <TextView
+            android:id="@+id/tvGenres"
+            android:layout_width="215dp"
+            android:layout_height="wrap_content"
+            android:drawableRight="@android:color/white"
+            android:text="genres"
+            android:textColor="#C0C0C0" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="163dp"
+            android:layout_height="wrap_content"
+            android:text="releaseDate"
+            android:textColor="#C0C0C0" />
+
+    </LinearLayout>
+
+    <RatingBar
+        android:paddingLeft="5dp"
+        android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="10"
+        android:rating="8.2" />
+
+    <TextView
+        android:paddingLeft="5dp"
+        android:id="@+id/tvOverview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Synopses"
+        android:textColor="@android:color/white" />
+
+
+
+</LinearLayout>
