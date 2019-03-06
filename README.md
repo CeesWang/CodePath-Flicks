@@ -1,8 +1,4 @@
-# Project 1 - *Flicks*
-
-**Name of your app** is an android app that allows building a todo list and basic todo items management functionality including adding new items, editing and deleting an existing item.
-
-Submitted by: **Chen Wang**
+# Project 1 - *Flicks* - week 1
 
 Time spent: **3** hours spent in total
 
@@ -15,33 +11,35 @@ The following **required** functionality is completed:
 
 The following **additional** features are not yet implemented:
 
-* [ ] For popular movies movie voted will be displayed
+* [x] For popular movies movie voted will be displayed
 
+## Flicks Part 2 - week 2
 
-## Video Walkthrough
+### User Stories
 
-Here's a walkthrough of implemented user stories:
+#### REQUIRED (10pts)
 
-<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+- [x] (8pts) Expose details of movie (ratings using RatingBar, popularity, and synopsis) in a separate activity.
+- [x] (2pts) Allow video posts to be played in full-screen using the YouTubePlayerView.
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+#### BONUS
 
-## Notes
+- [ ] Trailers for popular movies are played automatically when the movie is selected (1 point).
+  - [ ] When clicking on a popular movie (i.e. a movie voted for more than 5 stars) the video should be played immediately.
+  - [ ] Less popular videos rely on the detailed page should show an image preview that can initiate playing a YouTube video.
+- [ ] Add a play icon overlay to popular movies to indicate that the movie can be played (1 point).
+- [ ] Apply the popular ButterKnife annotation library to reduce view boilerplate. (1 point)
+- [ ] Add a rounded corners for the images using the Glide transformations. (1 point)
+
+### App Walkthough GIF
+
+`TODO://` Add the URL to your animated app walkthough `gif` in the image tag below, walkthrough.gif. Make sure the gif actually renders and animates when viewing this README. 
+
+### Notes
 
 Describe any challenges encountered while building the app.
 
-## License
-
-    Copyright [yyyy] [name of copyright owner]
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+## Open-source libraries used
+- [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
+- [Glide](https://github.com/bumptech/glide) - Image loading and caching library for Android
+    
