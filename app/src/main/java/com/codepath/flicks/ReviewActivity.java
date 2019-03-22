@@ -18,30 +18,44 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class ReviewActivity extends AppCompatActivity {
     private static String review_url = "https://api.themoviedb.org/3/movie/%d/reviews?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
     List<Review> reviews;
-    RecyclerView rvReview;
+    @BindView(R.id.rvReview) RecyclerView rvReview;
     ReviewAdapter adapter;
     AsyncHttpClient client;
+    int movieId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+        getSupportActionBar().setTitle("User Reviews");
+        ButterKnife.bind(this);
         reviews = new ArrayList<>();
         adapter = new ReviewAdapter(this,reviews);
-        rvReview = findViewById(R.id.rvReview);
         rvReview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvReview.setAdapter(adapter);
+
+        movieId = getIntent().getIntExtra("movie",0);
         client = new AsyncHttpClient();
-        client.get(review_url, new JsonHttpResponseHandler() {
+
+        client.get(String.format(review_url, movieId), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     JSONArray jsonArray = response.getJSONArray("results");
-                    reviews.addAll(Review.fromJsonArray(jsonArray));
+                    if (jsonArray.length() == 0) {
+                        Review rw= new Review();
+                        rw.setContent("No Reviews");
+                        reviews.add(rw);
+                    }
+                    else
+                        reviews.addAll(Review.fromJsonArray(jsonArray));
                     adapter.notifyDataSetChanged();
                     Log.d("smile", reviews.toString());
                 } catch (JSONException e) {

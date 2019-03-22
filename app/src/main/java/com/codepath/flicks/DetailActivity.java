@@ -1,7 +1,10 @@
 package com.codepath.flicks;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -18,6 +21,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcels;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class DetailActivity extends YouTubeBaseActivity {
@@ -25,27 +30,22 @@ public class DetailActivity extends YouTubeBaseActivity {
     public static final String YOUTUBE_API_KEY = "AIzaSyCZQtyDYrSbdWlkF5tqle9jMDF5MxDYGS8";
     public static final String TRAILERS_API = "https://api.themoviedb.org/3/movie/%d/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
-    TextView tvTitle;
-    TextView tvOverview;
-    TextView tvGenres;
-    RatingBar ratingBar;
-    TextView tvDate;
-    TextView tvAdult;
+    Context context;
     Movie movie;
-    YouTubePlayerView youTubePlayerView;
+    @BindView(R.id.reviewView) TextView reviewView;
+    @BindView(R.id.tvAdult) TextView tvAdult;
+    @BindView(R.id.tvDate)TextView tvDate;
+    @BindView(R.id.tvOverview) TextView tvOverview;
+    @BindView(R.id.tvAuthor) TextView tvTitle;
+    @BindView(R.id.ratingBar) RatingBar ratingBar;
+    @BindView(R.id.tvGenres) TextView tvGenres;
+    @BindView(R.id.player) YouTubePlayerView youTubePlayerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        tvAdult = findViewById(R.id.tvAdult);
-        tvDate = findViewById(R.id.tvDate);
-        tvTitle = findViewById(R.id.tvTitle);
-        tvOverview = findViewById(R.id.tvOverview);
-        ratingBar = findViewById(R.id.ratingBar);
-        tvGenres = findViewById(R.id.tvGenres);
-        youTubePlayerView = findViewById(R.id.player);
-
+        ButterKnife.bind(this);
         AsyncHttpClient client = new AsyncHttpClient();
         movie = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
         tvTitle.setText(movie.getTitle());
@@ -54,10 +54,10 @@ public class DetailActivity extends YouTubeBaseActivity {
         ratingBar.setRating((float)(movie.getRating()));
         tvDate.setText(movie.getReleaseDate());
         tvAdult.setText(movie.getAdult());
+
      //   tvGenres.setText();
         // Trailers
         client.get(String.format(TRAILERS_API, movie.getMovieId()), new JsonHttpResponseHandler(){
-
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
@@ -71,14 +71,21 @@ public class DetailActivity extends YouTubeBaseActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
             }
-
         });
+        reviewView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent (DetailActivity.this, ReviewActivity.class);
+                i.putExtra("movie", movie.getMovieId());
+                startActivity(i);
+            }
+        });
+
     }
 
     private void initializeYoutube(final String youtubeKey) {

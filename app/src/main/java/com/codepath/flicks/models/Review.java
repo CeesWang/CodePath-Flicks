@@ -11,6 +11,7 @@ import java.util.List;
 @Parcel
 public class Review {
     String author;
+    int id;
     String content;
     // empty constructor needed by the Parceler library
     public Review() {
@@ -27,6 +28,22 @@ public class Review {
             reviews.add(new Review(jsonArray.getJSONObject(i)));
         }
         return reviews;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getAuthor() {

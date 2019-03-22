@@ -14,13 +14,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.codepath.flicks.DetailActivity;
 import com.codepath.flicks.R;
 import com.codepath.flicks.models.Movie;
 
 import org.parceler.Parcels;
-
 import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder>{
 
@@ -53,28 +56,25 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.tvAuthor)TextView tvTitle;
+        @BindView(R.id.tvOverview)TextView tvOverview;
+        @BindView(R.id.ivPoster)ImageView ivPoster;
+        @BindView (R.id.container) RelativeLayout container;
 
-        TextView tvTitle;
-        TextView tvOverview;
-        ImageView ivPoster;
-        RelativeLayout container;
-
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvOverview = itemView.findViewById(R.id.tvOverview);
-            ivPoster = itemView.findViewById(R.id.ivPoster);
-            container = itemView.findViewById(R.id.container);
+         //   container = itemView.findViewById(R.id.container);
+            ButterKnife.bind(this,itemView);
         }
 
         public void setData(final Movie movie) {
-
             tvTitle.setText(movie.getTitle());
             String imageUrl = movie.getPosterPath();
             tvOverview.setText(movie.getOverview());
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
                 imageUrl = movie.getBackdropPath();
-            Glide.with(context).load(imageUrl).into(ivPoster);
+            //Glide.with(context).load(imageUrl).into(ivPoster);
+            Glide.with(context).load(imageUrl).apply(new RequestOptions().circleCrop().transform((new RoundedCornersTransformation(25,0)))).into(ivPoster);
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

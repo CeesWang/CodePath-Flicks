@@ -48,17 +48,18 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
         TextView tvAuthor;
         TextView tvReview;
+        TextView reviewView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvAuthor= itemView.findViewById(R.id.tvTitle);
-            tvReview = itemView.findViewById(R.id.tvOverview);
+            tvAuthor= itemView.findViewById(R.id.tvAuthor);
+            tvReview = itemView.findViewById(R.id.tvReview);
+            reviewView = itemView.findViewById(R.id.reviewView);
         }
 
         public void setData(final Review review) {
             tvAuthor.setText(review.getAuthor());
             tvReview.setText(review.getContent());
-
         }
     }
 }

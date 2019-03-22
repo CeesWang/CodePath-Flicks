@@ -10,12 +10,13 @@
     android:paddingBottom="10dp">
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#121212"
         android:contextClickable="false"
         android:elegantTextHeight="false"
-        android:paddingLeft="5dp"
+        android:paddingLeft="10dp"
         android:textAlignment="viewStart"
         android:textColor="@android:color/white"
         android:textSize="24sp"
@@ -26,7 +27,8 @@
         android:id="@+id/tvReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
+        android:background="#121212"
+        android:paddingLeft="10dp"
         android:textColor="@android:color/white"
         tools:text="aweifoiwjfeawjfjawfjoawifjoiawjfiojawoefjioa wjfioawjefi ojawieofj aoiwefj ioawjfio ajwefoij awiofjaowijfiowaejfioawjio jwaioejfoia wjefoiajwe ofjaweof jioawejfoiwajefoawiejf " />
 </LinearLayout>
